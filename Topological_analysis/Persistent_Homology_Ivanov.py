@@ -24,9 +24,9 @@ class PHI:
     
     def text_bow_spec(self, word_count=3):
         cv = CountVectorizer()
-        corpus = re.findall(' '.join(["[^ ]+"]*word_count), self.bare_text.replace('\n',' '))
-        count_v = cv.fit(corpus) # cv.fit() creates the dictionary of all the unique words in the corpus.
-        self.bow = cv.transform(corpus).toarray()
+        self.corpus = re.findall(' '.join(["[^ ]+"]*word_count), self.bare_text.replace('\n',' '))
+        count_v = cv.fit(self.corpus) # cv.fit() creates the dictionary of all the unique words in the corpus.
+        self.bow = cv.transform(self.corpus).toarray()
         self.cv = cv
         
     def point_cloud(self):
@@ -70,14 +70,14 @@ class PHI:
         fig.tight_layout()
         plt.show()
         
-    def full_sif_sifts(self, dimentions=[0,1], custom_dist=False):
-        self.sif(max_dim=3, custom_dist=False)        
+    def full_sif_sifts(self, max_dim=3, dimentions=[0,1], custom_dist=False):
+        self.sif(max_dim=max_dim, custom_dist=custom_dist)        
         self.simplex_tree.compute_persistence(min_persistence=0.3)
         
         sif_diag0 = self.simplex_tree.persistence_intervals_in_dimension(dimentions[0])
         sif_diag1 = self.simplex_tree.persistence_intervals_in_dimension(dimentions[1])
         
-        self.sifts(max_dim=3, custom_dist=False)
+        self.sifts(max_dim=max_dim, custom_dist=custom_dist)
         self.simplex_tree.compute_persistence(min_persistence=0.3)
         
         sifts_diag0 = self.simplex_tree.persistence_intervals_in_dimension(dimentions[0])
