@@ -8,6 +8,7 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import CountVectorizer
+import re
 
 
 class PHI:
@@ -19,6 +20,14 @@ class PHI:
         corpus = self.bare_text.split(splitter)
         count_v = cv.fit(corpus) # cv.fit() creates the dictionary of all the unique words in the corpus.
         self.bow = cv.transform(corpus).toarray()
+        self.cv = cv
+    
+    def text_bow_spec(self, word_count=3):
+        cv = CountVectorizer()
+        corpus = re.findall(' '.join(["[^ ]+"]*word_count), self.bare_text.replace('\n',' '))
+        count_v = cv.fit(corpus) # cv.fit() creates the dictionary of all the unique words in the corpus.
+        self.bow = cv.transform(corpus).toarray()
+        self.cv = cv
         
     def point_cloud(self):
         self.bow = self.bare_text
