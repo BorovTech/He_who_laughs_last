@@ -1204,17 +1204,17 @@ class GG(Graph):
                  vertices: dict,
                  triangles: list = list(),
                  delaunay: scipy.spatial.qhull.Delaunay = None):
-                '''
-                Gabriel graph initialization
+        '''
+        Gabriel graph initialization
 
-                Parameters
-                ----------
-                vertices: dict
-                vertices = {word: Node(vector,
-                                       neighbors set)}
-                triangles: list = list()
-                delaunay: scipy.spatial.qhull.Delaunay = None
-                '''
+        Parameters
+        ----------
+        vertices: dict
+        vertices = {word: Node(vector,
+                               neighbors set)}
+        triangles: list = list()
+        delaunay: scipy.spatial.qhull.Delaunay = None
+        '''
         super().__init__(vertices)
         self.__triangles = copy.deepcopy(triangles)
         self.__delaunay = copy.deepcopy(delaunay)
@@ -1378,15 +1378,15 @@ class RNG(GG):
                  vertices: dict,
                  triangles: list = list(),
                  delaunay: scipy.spatial.qhull.Delaunay = None):
-                 '''
-                 Relative Neighborhood Graph (RNG) initialization
+        '''
+        Relative Neighborhood Graph (RNG) initialization
 
-                 Parameters
-                 ----------
-                 vertices : dict
-                 triangles : list = list()
-                 delaunay : scipy.spatial.qhull.Delaunay = None
-                 '''
+        Parameters
+        ----------
+        vertices : dict
+        triangles : list = list()
+        delaunay : scipy.spatial.qhull.Delaunay = None
+        '''
         super().__init__(vertices, triangles, delaunay)
 
     def create_rn_graph(self, already_gabriel: bool = True):
