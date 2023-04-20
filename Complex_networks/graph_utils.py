@@ -88,7 +88,7 @@ def create_words_text_neighbors(corpus: list) -> dict:
                                         sentence_neighbors)}
     """
     file_ = open(f"create_words_text_neighbors_progress.txt", "w")
-    words_text_neighbors = dict()
+    words_text_neighbors = dict()  # type: ignore
     for text in tqdm(corpus, file=file_):
         document_words = set()
         for sentence in text:
@@ -99,7 +99,7 @@ def create_words_text_neighbors(corpus: list) -> dict:
                 word_sentence_neighbors = set(
                     sentence["sentence_text"].keys()
                 ).difference(set([word]))
-                if word in vertices.keys():
+                if word in vertices.keys():  # type: ignore
                     words_text_neighbors[word].document_neighbors.update(
                         word_document_neighbors
                     )
@@ -519,7 +519,7 @@ class Graph:
             graph_degrees.append(len(self.vertices[word].neighbors))
         return graph_degrees
 
-    def add_edge(self, first_word: str, second_word: str):
+    def add_edge(self, first_word: str, second_word: str) -> None:
         """
         Add edge to word
 
@@ -531,7 +531,7 @@ class Graph:
         self.vertices[first_word].neighbors.add(second_word)
         self.vertices[second_word].neighbors.add(first_word)
 
-    def delete_edge(self, first_word: str, second_word: str):
+    def delete_edge(self, first_word: str, second_word: str) -> None:
         """
         Delete edge
 
@@ -543,7 +543,7 @@ class Graph:
         self.vertices[first_word].neighbors.difference_update(set([second_word]))
         self.vertices[second_word].neighbors.difference_update(set([first_word]))
 
-    def reset_graph_neighbors(self):
+    def reset_graph_neighbors(self) -> None:
         """
         Reset graph neighbors
         """
@@ -886,7 +886,7 @@ class Graph:
             # Для каждой связи обновляет ее путь и полное расстояние от
             # исходного узла, если общее расстояние меньше, чем текущее расстояние
             # в массиве dist
-            for (neighbor_index, edge_weight) in connections:
+            for neighbor_index, edge_weight in connections:
                 word = words_list[neighbor_index]
                 node = self.vertices[word]
                 heap_location = heap.order_mapping[neighbor_index]
