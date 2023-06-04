@@ -68,14 +68,6 @@ class LanguageModel(nn.Module):
         :return: generated text
         """
         self.eval()
-        """
-        YOUR CODE HERE (⊃｡•́‿•̀｡)⊃━✿✿✿✿✿✿
-        Encode the prefix (do not forget the BOS token!),
-        pass it through the model to accumulate RNN hidden state and
-        generate new tokens sequentially, sampling from categorical distribution,
-        until EOS token or reaching self.max_length.
-        Do not forget to divide predicted logits by temperature before sampling
-        """
         device = next(self.parameters()).device
         tokens = [self.dataset.bos_id]
         tokens += self.dataset.text2ids(prefix)
