@@ -90,7 +90,7 @@ class LanguageModel(nn.Module):
         new_tokens = Categorical(logits=logits[:, -1:]).sample()
         tokens = torch.cat([tokens, new_tokens], dim=1)
 
-        while tokens.shape[1] < self.max_length:
+        while tokens.shape[1] < self.max_length:  # type: ignore
             if new_tokens.item() == self.dataset.eos_id:
                 break
 
@@ -103,8 +103,8 @@ class LanguageModel(nn.Module):
             new_tokens = Categorical(logits=logits[:, -1:]).sample()
             tokens = torch.cat([tokens, new_tokens], dim=1)
 
-        generated = self.dataset.ids2text(tokens.squeeze())
-        return generated
+        generated = self.dataset.ids2text(tokens.squeeze())  # type: ignore
+        return generated  # type: ignore
 
     def to(self, device, **kwargs):
         self.device = device
