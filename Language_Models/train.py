@@ -63,12 +63,6 @@ def training_epoch(
 
     model.train()
     for indices, lengths in tqdm(loader, desc=tqdm_desc):
-        """
-        YOUR CODE HERE (⊃｡•́‿•̀｡)⊃━✿✿✿✿✿✿
-        Process one training step: calculate loss,
-        call backward and make one optimizer step.
-        Accumulate sum of losses for different batches in train_loss
-        """
         optimizer.zero_grad()
         indices = indices[:, : lengths.max()].to(device).long()
         logits = model(indices[:, :-1], lengths - 1)
@@ -99,11 +93,6 @@ def validation_epoch(
 
     model.eval()
     for indices, lengths in tqdm(loader, desc=tqdm_desc):
-        """
-        YOUR CODE HERE (⊃｡•́‿•̀｡)⊃━✿✿✿✿✿✿
-        Process one validation step: calculate loss.
-        Accumulate sum of losses for different batches in val_loss
-        """
         indices = indices[:, : lengths.max()].to(device).long()
 
         logits = model(indices[:, :-1], lengths - 1)
