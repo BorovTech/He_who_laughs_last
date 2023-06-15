@@ -17,6 +17,6 @@
 ## Repo Organisation
 This repository has following structure: <br>
 - Complex_networks (Author: Kulzhik Stepan) - a directory dedictaed to an application of complex networks (graphs) to SVD embeddings and following research of this method 
-- Topological_analysis (Author: Ivanov Artemiy) - TBD
+- Topological_analysis (Author: Ivanov Artemiy)
 - Data_preprocessing_classification (Author: Lugovtsev Timur)- directory containing the pipelines for scraping, preprocessing and embedding data for it to be used elsewhere in the project as well as applying binary classification methods on it.
 - Language_Models (Author: Kulzhik Stepan) - directory with implementations of multiple language models (RNN, LSTM, Transformer generator). IMPORTANT NOTE: bpe.model and bpe.vocab should not be altered.  
